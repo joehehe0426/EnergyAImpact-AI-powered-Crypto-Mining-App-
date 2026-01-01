@@ -1,0 +1,85 @@
+# EnergyAImpact Mining Configuration
+# =====================================
+# IMPORTANT: Replace wallet addresses with your own!
+
+mining:
+  # Your wallet address - REPLACE WITH YOUR OWN
+  wallet_address: ""  # Required - set your wallet address
+  
+  # Worker name for pool identification
+  worker_name: "energyaimpact_worker1"
+  
+  # Mining algorithm: sha256, randomx, ethash
+  algorithm: "sha256"
+  
+  # Number of CPU threads to use (0 = auto-detect)
+  threads: 0
+  
+  # Mining intensity (1-100)
+  intensity: 75
+
+pools:
+  # Primary mining pool
+  primary:
+    # Bitcoin SHA-256 pools
+    url: "stratum+tcp://stratum.slushpool.com"
+    port: 3333
+    
+  # Backup pools (failover)
+  backup:
+    - url: "stratum+tcp://btc.viabtc.com"
+      port: 3333
+    - url: "stratum+tcp://ss.antpool.com"
+      port: 3333
+
+  # Alternative pools for different coins
+  alternatives:
+    # Monero (RandomX) - CPU friendly
+    monero:
+      url: "stratum+tcp://pool.supportxmr.com"
+      port: 3333
+    # Ethereum Classic (Ethash)
+    etc:
+      url: "stratum+tcp://etc.2miners.com"
+      port: 1010
+
+api:
+  # Backend API settings
+  host: "0.0.0.0"
+  port: 5000
+  debug: false  # NEVER enable in production
+  
+  # CORS settings
+  cors_origins:
+    - "http://localhost:*"
+    - "http://127.0.0.1:*"
+
+monitoring:
+  # Report hashrate every N seconds
+  hashrate_interval: 10
+  
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  log_level: "INFO"
+  
+  # Enable hardware monitoring
+  hardware_monitoring: true
+  
+  # Temperature threshold (Celsius) - pause mining if exceeded
+  max_temperature: 85
+
+energy:
+  # Electricity cost per kWh (for profitability calculation)
+  cost_per_kwh: 0.12
+  
+  # Currency for cost display
+  currency: "USD"
+
+ai_optimization:
+  # Enable AI-based mining optimization
+  enabled: true
+  
+  # Optimization interval (minutes)
+  interval: 15
+  
+  # Auto-switch coins based on profitability
+  auto_switch: false
